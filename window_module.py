@@ -45,15 +45,10 @@ def show_word(df):
 
     if LANG == 'Ru':
         t_translate.insert(tkinter.INSERT, get_word(df, CURRENT_ROW)[1])
-        # t_translate.config(text=get_word(df, CURRENT_ROW)[1], font=('Arial', 20))
+
     else:
         t_translate.insert(tkinter.INSERT, get_word(df, CURRENT_ROW)[0])
-        # t_translate.config(text=get_word(df, CURRENT_ROW)[0], font=('Arial', 20))
 
-    # t_translate.place(x=200, y=250)
-
-    # l_description.config(text=get_word(df, CURRENT_ROW)[2], font=('Arial', 20))
-    # l_description.place(x=200, y=320)
     t_description.insert(tkinter.INSERT, get_word(df, CURRENT_ROW)[2])
 
 
@@ -76,10 +71,8 @@ if __name__ == '__main__':
     b_main.place(x=200, y=100)
 
     l_translate = Label(text='translation')
-    # l_translate.place(x=200, y=250)
 
     l_description = Label(text='description')
-    # l_description.place(x=200, y=320)
 
     t_translate = st.ScrolledText(root,
                                   width=30,
@@ -92,5 +85,8 @@ if __name__ == '__main__':
                                     height=2,
                                     font=("Times New Roman", 20))
     t_description.place(x=165, y=320)
+
+    root.bind('<Shift_R>', lambda event: show_word(data))
+    root.bind('<Right>', lambda event: next_row(data))
 
     root.mainloop()
